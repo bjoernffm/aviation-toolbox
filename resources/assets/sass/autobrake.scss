@@ -1,0 +1,25 @@
+.autobrake {
+    .distanceBox {
+        background-color: #bbb;
+        position: relative;
+        overflow: hidden;
+
+        h2 {
+            color: #fff;
+            padding: 5px 20px;
+            margin:0;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        div {
+            height: 44px;
+        }
+    }
+
+    .distanceBox.miss div {
+        height: 44px;
+        background-color: #e55 !important;
+    }
+}

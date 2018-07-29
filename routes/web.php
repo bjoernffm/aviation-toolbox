@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/timeadder', function () {
+    return view('timeadder.show');
+});
+
+Route::get('/autobrake', 'AutobrakeController@show');
+Route::post('/autobrake', 'AutobrakeController@store');
