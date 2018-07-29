@@ -20,19 +20,19 @@
         <form action="{{action('AutobrakeController@store')}}" method="post">
             {{csrf_field()}}
             <div class="form-group">
-                <label for="wtInKgs">Weight (Kgs)</label>
+                <label for="wtInKgs">Weight (Kgs)*</label>
                 <input value="{{ old('wtInKgs') }}" id="wtInKgs" name="wtInKgs" type="number" class="form-control" />
             </div>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="lda">Landing distance available</label>
+                        <label for="lda">Landing distance available*</label>
                         <input value="{{ old('lda') }}" id="lda" name="lda" type="number" class="form-control" />
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="rwyCondition">Runway Condition</label>
+                        <label for="rwyCondition">Runway Condition*</label>
                         <select id="rwyCondition" name="rwyCondition" class="form-control">
                             <option value="dry">Dry</option>
                         </select>
@@ -96,7 +96,7 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="reverseThrust">Reverse Thrust</label>
+                        <label for="reverseThrust">Reverse Thrust*</label>
                         <select id="reverseThrust" name="reverseThrust" class="form-control">
                             <option value="normal">NORMAL</option>
                             <option value="one_rev">ONE REVERSER</option>
@@ -105,7 +105,11 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
+            <small class="form-text text-muted">
+                * required
+            </small>
+            <br />
+            <button type="submit" class="btn btn-default">Calculate</button>
         </form>
     </div>
     <div class="col-sm-6">
@@ -159,6 +163,11 @@
                 <h2>AUTOBRAKE 1 - {{@round($calculations['autobrake_1']['total_dist'])}}m</h2>
             @endif
                 <div style="background-color: #5e5; width: {{$calculations['autobrake_1']['lda_used']}}%;"></div>
+            </div>
+        @else
+            <div class="jumbotron">
+                <h1 class="display-4">Almost there!</h1>
+                <p class="lead">Use the form and fill in all necessary information to get the wanted output.</p>
             </div>
         @endif
     </div>

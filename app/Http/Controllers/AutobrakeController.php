@@ -96,7 +96,7 @@ class AutobrakeController extends Controller
 
     public function show()
     {
-        return view('autobreak.show')->with('calculations', []);
+        return view('autobrake.show')->with('calculations', []);
     }
 
     public function store(Request $request)
@@ -197,7 +197,7 @@ class AutobrakeController extends Controller
             $results[$brakeSetting] = $calculations;
         }
 
-        return view('autobreak.show')
+        return view('autobrake.show')
             ->with('data', ['old' => $validatedData])
             ->with('calculations', $results);
     }

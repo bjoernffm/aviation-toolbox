@@ -32,7 +32,7 @@
                         <h4 class="text-white"><i class="fas fa-plane-arrival"></i>&nbsp;Arriving Tools</h4>
                         <ul class="list-unstyled">
                             <li><a href="{{action('AutobrakeController@show')}}" class="text-white">Boeing 738 NG Autobrake Calculator</a></li>
-                            <li><a href="#" class="text-white">Descent Calculator</a></li>
+                            <li><a href="{{action('DescendCalculatorController@show')}}" class="text-white">Descent Calculator</a></li>
                         </ul>
                     </div>
                     <div class="col-sm-4 py-4">

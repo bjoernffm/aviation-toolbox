@@ -21,3 +21,6 @@ Route::get('/timeadder', function () {
 
 Route::get('/autobrake', 'AutobrakeController@show');
 Route::post('/autobrake', 'AutobrakeController@store');
+
+Route::get('/descend-calculator', 'DescendCalculatorController@show');
+Route::post('/descend-calculator', 'DescendCalculatorController@store');
