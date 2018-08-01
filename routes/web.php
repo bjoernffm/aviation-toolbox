@@ -24,3 +24,5 @@ Route::post('/autobrake', 'AutobrakeController@store');
 
 Route::get('/descend-calculator', 'DescendCalculatorController@show');
 Route::post('/descend-calculator', 'DescendCalculatorController@store');
+
+Route::get('/airports/{identifier}', 'AirportController@show');

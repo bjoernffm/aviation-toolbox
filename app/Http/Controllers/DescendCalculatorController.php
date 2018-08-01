@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \bjoernffm\e6b\DescendPathCalculator as e6bCalc;
+use App\Airport;
 
 class DescendCalculatorController extends Controller
 {
