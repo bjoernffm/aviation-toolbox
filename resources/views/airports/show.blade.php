@@ -4,8 +4,18 @@
 @php
     use bjoernffm\e6b\Calculator as e6bCalc;
 @endphp
-<h1>{{$airport->ident}}</h1>
-<h3>{{$airport->name}}</h3>
+<div class="row">
+    <div class="col-sm-8">
+        <h1>{{$airport->ident}}</h1>
+        <h3>{{$airport->name}}</h3>
+    </div>
+    <div class="col-sm-4">
+        <form action="{{action('AirportController@store')}}" method="post">
+            {{csrf_field()}}
+            <input id="identifier" name="identifier" placeholder="Search another Aiport" type="text" class="form-control" />
+        </form>
+    </div>
+</div>
 <hr />
 <div class="row">
     <div class="col-sm-4">
@@ -36,4 +46,27 @@
         </dl>
     </div>
 </div>
+<hr />
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 400px;
+      }
+    </style>
+    <div id="map"></div>
+    <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: {{$airport->latitude_deg}}, lng: {{$airport->longitude_deg}}},
+          zoom: 14,
+            mapTypeId: 'satellite'
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"
+    async defer></script>
+  </body>
+</html>
 @endsection

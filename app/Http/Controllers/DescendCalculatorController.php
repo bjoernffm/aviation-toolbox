@@ -21,7 +21,7 @@ class DescendCalculatorController extends Controller
             'ias' => 'required|numeric|min:1',
             'descentRate' => 'required|numeric|min:1',
             'initialAltitude' => 'required|numeric|min:1',
-            'targetAltitude' => 'required|numeric|min:1|lt:initialAltitude'
+            'targetAltitude' => 'required|numeric|lt:initialAltitude'
         ]);
         $request->flash();
 

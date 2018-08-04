@@ -38,6 +38,7 @@
                         <ul class="list-unstyled">
                             <li><a href="{{action('AutobrakeController@show')}}" class="text-white">Boeing 738 NG Autobrake Calculator</a></li>
                             <li><a href="{{action('DescendCalculatorController@show')}}" class="text-white">Descent Calculator</a></li>
+                            <li><a href="{{action('AirportController@index')}}" class="text-white">Airport Directory</a></li>
                         </ul>
                     </div>
                     <div class="col-sm-4 py-4">
@@ -79,6 +80,8 @@
     <!-- Scripts -->
     <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>-->
     <!--<script src="/toolbox/js/timeadder.js"></script>-->
+
+    <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
         jQuery(document).ready(function( $ ) {

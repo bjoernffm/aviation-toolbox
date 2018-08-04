@@ -43,7 +43,7 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="targetAltitude">Target Altitude (ft)*</label>
-                        <input value="{{ old('descentRate') }}" id="targetAltitude" name="targetAltitude" type="number" class="form-control" />
+                        <input value="{{ old('targetAltitude') }}" id="targetAltitude" name="targetAltitude" type="number" class="form-control" />
                     </div>
                 </div>
             </div>
