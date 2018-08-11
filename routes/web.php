@@ -19,8 +19,10 @@ Route::get('/timeadder', function () {
     return view('timeadder.show');
 });
 
+Route::get('/autobrake/{airportCode}', 'AutobrakeController@showWithAirport');
 Route::get('/autobrake', 'AutobrakeController@show');
 Route::post('/autobrake', 'AutobrakeController@store');
+Route::post('/autobrake/{identifier}', 'AutobrakeController@storeWithAirport');
 
 Route::get('/descend-calculator', 'DescendCalculatorController@show');
 Route::post('/descend-calculator', 'DescendCalculatorController@store');

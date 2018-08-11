@@ -62,7 +62,7 @@
         @endforeach
         </dl>
     </div>
-    <div class="col-sm-2">
+    <div class="col-sm-3">
         <h4>Frequencies</h4>
         <dl>
         @foreach ($airport->frequencies as $frequency)
@@ -70,8 +70,15 @@
             <dd>{{$frequency->frequency_mhz}} MHz</dd>
         @endforeach
         </dl>
+        <h4>Sun Info</h4>
+        <dl>
+            <dt>BCMT</dt>
+            <dd>{{$sunInfo['bcmt']['utc']->format('H:i')}} UTC</dd>
+            <dt>ECET</dt>
+            <dd>{{$sunInfo['ecet']['utc']->format('H:i')}} UTC</dd>
+        </dl>
     </div>
-    <div class="col-sm-7">
+    <div class="col-sm-6">
     <div id="map" style="height: 400px;"></div>
     </div>
 </div>

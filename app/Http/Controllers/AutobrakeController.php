@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Airport;
+use App\Runway;
 
 class AutobrakeController extends Controller
 {
@@ -97,6 +99,19 @@ class AutobrakeController extends Controller
     public function show()
     {
         return view('autobrake.show')->with('calculations', []);
+    }
+
+    public function showWithAirport($airportCode)
+    {
+        $airport = Airport::where('ident', $airportCode)->firstOrFail();
+
+        $runways = [];
+        foreach($airport->runways as $runway) {
+            $runways[$runway->id.'|'.$runway->le_ident] = $runway->le_ident;
+            $runways[$runway->id.'|'.$runway->he_ident] = $runway->he_ident;
+        }
+            var_dump($runways);
+        #$this->store($request);
     }
 
     public function store(Request $request)
