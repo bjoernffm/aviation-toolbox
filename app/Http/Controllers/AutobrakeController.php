@@ -11,7 +11,7 @@ class AutobrakeController extends Controller
     /**
      * measured in meters
      */
-    static $dataMap = [
+    public static $dataMap = [
         'dry' => [
             'max_manual' => [
                 'ref_dist' => 960,
@@ -106,11 +106,11 @@ class AutobrakeController extends Controller
         $airport = Airport::where('ident', $airportCode)->firstOrFail();
 
         $runways = [];
-        foreach($airport->runways as $runway) {
+        foreach ($airport->runways as $runway) {
             $runways[$runway->id.'|'.$runway->le_ident] = $runway->le_ident;
             $runways[$runway->id.'|'.$runway->he_ident] = $runway->he_ident;
         }
-            var_dump($runways);
+        var_dump($runways);
         #$this->store($request);
     }
 
@@ -148,7 +148,7 @@ class AutobrakeController extends Controller
                 'total_dist' => $lda
             ]
         ];
-        foreach(
+        foreach (
             ['max_manual', 'autobrake_max', 'autobrake_3', 'autobrake_2', 'autobrake_1']
             as $brakeSetting) {
             $dataset = self::$dataMap[$rwyCondition][$brakeSetting];
@@ -191,7 +191,7 @@ class AutobrakeController extends Controller
 
             if ($reverseThrust == 'one_rev') {
                 $calculations['reverse_thrust_adj'] = $dataset['reverse_thrust_adj_one_rev'];
-            } else if ($reverseThrust == 'no_rev') {
+            } elseif ($reverseThrust == 'no_rev') {
                 $calculations['reverse_thrust_adj'] = $dataset['reverse_thrust_adj_no_rev'];
             } else {
                 $calculations['reverse_thrust_adj'] = 0;

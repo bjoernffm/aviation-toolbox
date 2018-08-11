@@ -67,7 +67,7 @@
         <dl>
         @foreach ($airport->frequencies as $frequency)
             <dt>{{$frequency->type}} - {{$frequency->description}}</dt>
-            <dd>{{$frequency->frequency_mhz}} MHz</dd>
+            <dd>{{number_format($frequency->frequency_mhz, 3)}} MHz</dd>
         @endforeach
         </dl>
         <h4>Sun Info</h4>

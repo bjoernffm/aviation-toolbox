@@ -49,11 +49,11 @@ class UpdateAirports extends Command
 
         $this->info('Inserting airport information');
         $bar = $this->output->createProgressBar(count($result['airports']));
-        foreach($result['airports'] as $record) {
+        foreach ($result['airports'] as $record) {
             try {
                 $airport = new Airport($record);
                 $airport->save();
-            } catch(\Exception $e) {
+            } catch (\Exception $e) {
             }
             $bar->advance();
         }
@@ -61,11 +61,11 @@ class UpdateAirports extends Command
 
         $this->info('Inserting airport frequencies');
         $bar = $this->output->createProgressBar(count($result['airport-frequencies']));
-        foreach($result['airport-frequencies'] as $record) {
+        foreach ($result['airport-frequencies'] as $record) {
             try {
                 $airportFrequency = new AirportFrequency($record);
                 $airportFrequency->save();
-            } catch(\Exception $e) {
+            } catch (\Exception $e) {
             }
             $bar->advance();
         }
@@ -73,11 +73,11 @@ class UpdateAirports extends Command
 
         $this->info('Inserting runways');
         $bar = $this->output->createProgressBar(count($result['runways']));
-        foreach($result['runways'] as $record) {
+        foreach ($result['runways'] as $record) {
             try {
                 $runway = new Runway($record);
                 $runway->save();
-            } catch(\Exception $e) {
+            } catch (\Exception $e) {
             }
             $bar->advance();
         }

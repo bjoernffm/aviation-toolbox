@@ -33,9 +33,8 @@ class DescendCalculatorController extends Controller
         );
 
         $buffer = [];
-        foreach($result['path'] as $item) {
+        foreach ($result['path'] as $item) {
             $buffer[] = [$item['nauticalMiles'], $item['altitude']];
-
         }
 
         return view('descendCalculator.show')
