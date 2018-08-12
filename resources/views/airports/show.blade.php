@@ -24,59 +24,91 @@
 </div>
 <hr />
 <div class="row">
-    <div class="col-sm-3">
-        <h4>Details</h4>
-        <dl>
-            <dt>Elevation</dt>
-            <dd>{{$airport->elevation_ft}} ft</dd>
-            <dt>Municipality</dt>
-            <dd>{{$airport->municipality}}</dd>
-            <dt>Coordinates</dt>
-            <dd>
-                {{$coordinates['dms']}}<br />
-                {{$coordinates['ddm']}}<br />
-                {{$coordinates['dds']}}
-            </dd>
-        </dl>
+    <div class="col-sm-6">
+        <div class="row">
+            <div class="col-sm-12">
+                <h4>
+                    Metar
+                    @if ($metar->flight_category == 'VFR')
+                    <span class="badge badge-success">VFR</span>
+                    @elseif ($metar->flight_category == 'MVFR')
+                    <span class="badge badge-primary">MVFR</span>
+                    @elseif ($metar->flight_category == 'IFR')
+                    <span class="badge badge-danger">IFR</span>
+                    @elseif ($metar->flight_category == 'LIFR')
+                    <span class="badge badge-success" style="background-color: #FF00FF;">LIFR</span>
+                    @endif
+                </h4>
+                {{$metar->raw_text}}
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>Details</h4>
+                <dl>
+                    <dt>Elevation</dt>
+                    <dd>{{$airport->elevation_ft}} ft</dd>
+                    <dt>Municipality</dt>
+                    <dd>{{$airport->municipality}}</dd>
+                    <dt>Coordinates</dt>
+                    <dd>
+                        {{$coordinates['dms']}}<br />
+                        {{$coordinates['ddm']}}<br />
+                        {{$coordinates['dds']}}
+                    </dd>
+                </dl>
 
-        <h4>Runways</h4>
-        <dl>
-        @foreach ($airport->runways as $runway)
-            <dt>
-                @if ($runway->closed == '1')
-                <span class="badge badge-danger">CLOSED</span>
-                @endif
+                <h4>Runways</h4>
+                <dl>
+                @foreach ($airport->runways as $runway)
+                    <dt>
+                        @if ($runway->closed == '1')
+                        <span class="badge badge-danger">CLOSED</span>
+                        @endif
 
-                {{$runway->le_ident}} / {{$runway->he_ident}}
-                @if ($runway->surface == 'ASP' or $runway->surface == 'ASPH')
-                <span class="badge badge-dark">{{$runway->surface}}</span>
-                @elseif ($runway->surface == 'CON' or $runway->surface == 'CONC')
-                <span class="badge badge-secondary">{{$runway->surface}}</span>
-                @elseif ($runway->surface == 'GRS')
-                <span class="badge badge-success">{{$runway->surface}}</span>
-                @else
-                <span class="badge badge-light">{{$runway->surface}}</span>
-                @endif
-            </dt>
-            <dd>Length: {{$runway->length_ft}} ft / {{e6bCalc::convertFeet($runway->length_ft)['meters']}} m</dd>
-        @endforeach
-        </dl>
-    </div>
-    <div class="col-sm-3">
-        <h4>Frequencies</h4>
-        <dl>
-        @foreach ($airport->frequencies as $frequency)
-            <dt>{{$frequency->type}} - {{$frequency->description}}</dt>
-            <dd>{{number_format($frequency->frequency_mhz, 3)}} MHz</dd>
-        @endforeach
-        </dl>
-        <h4>Sun Info</h4>
-        <dl>
-            <dt>BCMT</dt>
-            <dd>{{$sunInfo['bcmt']['utc']->format('H:i')}} UTC</dd>
-            <dt>ECET</dt>
-            <dd>{{$sunInfo['ecet']['utc']->format('H:i')}} UTC</dd>
-        </dl>
+                        {{$runway->le_ident}} / {{$runway->he_ident}}
+                        @if ($runway->surface == 'ASP' or $runway->surface == 'ASPH')
+                        <span class="badge badge-dark">{{$runway->surface}}</span>
+                        @elseif ($runway->surface == 'CON' or $runway->surface == 'CONC')
+                        <span class="badge badge-secondary">{{$runway->surface}}</span>
+                        @elseif ($runway->surface == 'GRS')
+                        <span class="badge badge-success">{{$runway->surface}}</span>
+                        @else
+                        <span class="badge badge-light">{{$runway->surface}}</span>
+                        @endif
+                    </dt>
+                    <dd>Length: {{$runway->length_ft}} ft / {{e6bCalc::convertFeet($runway->length_ft)['meters']}} m</dd>
+                @endforeach
+                </dl>
+            </div>
+            <div class="col-sm-6">
+                <h4>Sun Info</h4>
+                <dl>
+                    <dt>BCMT</dt>
+                    <dd>
+                        {{$sunInfo['bcmt']['utc']->format('H:i')}} UTC
+                        @if (isset($sunInfo['bcmt']['local']))
+                        ({{$sunInfo['bcmt']['local']->format('H:i')}} LT)
+                        @endif
+                    </dd>
+                    <dt>ECET</dt>
+                    <dd>
+                        {{$sunInfo['ecet']['utc']->format('H:i')}} UTC
+                        @if (isset($sunInfo['bcmt']['local']))
+                        ({{$sunInfo['ecet']['local']->format('H:i')}} LT)
+                        @endif
+                    </dd>
+                </dl>
+                <h4>Frequencies</h4>
+                <dl>
+                @foreach ($airport->frequencies as $frequency)
+                    <dt>{{$frequency->type}} - {{$frequency->description}}</dt>
+                    <dd>{{number_format($frequency->frequency_mhz, 3)}} MHz</dd>
+                @endforeach
+                </dl>
+            </div>
+        </div>
     </div>
     <div class="col-sm-6">
     <div id="map" style="height: 400px;"></div>
