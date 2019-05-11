@@ -10,7 +10,7 @@
         "bjoernffm/ourairports-downloader": "dev-master",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.3",
-        "laravel/framework": "5.6.*",
+        "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "ramsey/uuid": "^3.8"
     },

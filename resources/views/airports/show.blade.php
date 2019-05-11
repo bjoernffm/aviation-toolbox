@@ -40,6 +40,12 @@
                     @endif
                 </h4>
                 {{$metar->raw_text}}
+                @if (isset($metar->wind))
+                <p>
+                    Wind
+                    <i class="fas fa-location-arrow" style="transform: rotate({{($metar->wind->degrees-45-180)}}deg);"></i>
+                    {{$metar->wind->speed_kts}} kts
+                @endif
             </div>
         </div>
         <hr />
